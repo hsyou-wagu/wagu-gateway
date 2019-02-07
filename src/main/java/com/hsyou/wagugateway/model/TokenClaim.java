@@ -10,6 +10,6 @@ import lombok.Setter;
 @Builder
 public class TokenClaim {
 
-    private long userId;
-    private String userEmail;
+    private long accountId;
+    private String accountEmail;
 }

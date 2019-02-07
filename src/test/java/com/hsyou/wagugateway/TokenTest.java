@@ -1,6 +1,7 @@
 package com.hsyou.wagugateway;
 
 import com.hsyou.wagugateway.model.AccountDTO;
+import com.hsyou.wagugateway.model.TokenClaim;
 import com.hsyou.wagugateway.service.JwtTokenProvider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,10 +51,11 @@ public class TokenTest {
         String token = jwtTokenProvider.createJWT(accountDTO);
 
         //when
-        long id = jwtTokenProvider.validateTokenAndGetId(token);
+        TokenClaim tokenClaim= jwtTokenProvider.validateTokenAndGetClaims(token);
 
         //then
-        assertThat(id).isEqualTo(userId);
+        assertThat(tokenClaim.getAccountId()).isEqualTo(userId);
+        assertThat(tokenClaim.getAccountEmail()).isEqualTo(userEmail);
 
     }
 }

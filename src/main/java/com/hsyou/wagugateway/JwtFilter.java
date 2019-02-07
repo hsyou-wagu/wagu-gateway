@@ -48,8 +48,8 @@ public class JwtFilter extends OncePerRequestFilter {
             try {
 
                 TokenClaim tokenClaim = jwtTokenProvider.validateTokenAndGetClaims(token);
-                long id = tokenClaim.getUserId();
-                String email = tokenClaim.getUserEmail();
+                long id = tokenClaim.getAccountId();
+                String email = tokenClaim.getAccountEmail();
                 UsernamePasswordAuthenticationToken auth;
                 auth = new UsernamePasswordAuthenticationToken(id, null, null);
 
@@ -66,7 +66,8 @@ public class JwtFilter extends OncePerRequestFilter {
                     }
                     //add a new parameter
 
-                    newParameterMap.put("userId",Arrays.asList(String.valueOf(id)));
+                    newParameterMap.put("accountId",Arrays.asList(String.valueOf(id)));
+                    newParameterMap.put("accountEmail",Arrays.asList(String.valueOf(email)));
                     RequestContext.getCurrentContext().setRequestQueryParams(newParameterMap);
 
 

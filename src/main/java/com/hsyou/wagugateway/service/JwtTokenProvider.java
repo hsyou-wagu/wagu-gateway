@@ -95,8 +95,8 @@ public class JwtTokenProvider {
 
             Map<String, Claim> claims = JWT.decode(token).getClaims();    //Key is the Claim name
             TokenClaim tokenClaim = TokenClaim.builder()
-                    .userId(claims.get("id").asLong())
-                    .userEmail(claims.get("email").asString())
+                    .accountId(claims.get("id").asLong())
+                    .accountEmail(claims.get("email").asString())
                     .build();
             return tokenClaim;
         } catch (JWTVerificationException exception){
